@@ -22,11 +22,11 @@ This app requires no installation when used in the browser.
 
 If running the app on a local installation, execute the following command in your local version of the backend repo followed by the command **nodemon server.js**:
 
-npm i axios bcrypt body-parser cjs cloudinary connect-flash cors dotenv ejs express ejs-express-layouts express-session jquery json-web-token method-override moment mongoose mongodb multer nodemon passport passport-local path stripe @stripe/react-stripe-js @stripe/stripe-js
+```npm i axios bcrypt body-parser cjs cloudinary connect-flash cors dotenv ejs express ejs-express-layouts express-session jquery json-web-token method-override moment mongoose mongodb multer nodemon passport passport-local path stripe @stripe/react-stripe-js @stripe/stripe-js```
 
 and the following command in your local version of the frontend repo followed by the command **npm start**:
 
-npm i axios bootstrap cloudinary font-awesome jet-decode multer react-bootstrap react-dom react-dotenv react-router-dom @stripe/react-stripe-js @stripe/stripe-js
+```npm i axios bootstrap cloudinary font-awesome jet-decode multer react-bootstrap react-dom react-dotenv react-router-dom @stripe/react-stripe-js @stripe/stripe-js```
 
 ## Timeframe & Working Team
 
@@ -228,7 +228,7 @@ The style of our site is inspired by comparable marketplace sites like Amazon, e
 The product carousel on our home page is external code and separates the products into individual divs that can be adjusted and slid left or right via arrow buttons:
 
 ![Screenshot 2022-11-14 at 18 13 52](https://media.git.generalassemb.ly/user/44781/files/4eea7686-2cac-404e-90fc-aee4fa54eff0)
-![carousel (1)](https://media.git.generalassemb.ly/user/44781/files/6c5234fc-272b-434e-ae75-814620a80f28)
+![carousel (1)](https://user-images.githubusercontent.com/97313222/201743314-6cd26b9d-d50e-4bce-b9a1-edd95b76e9f8.gif)
 
 Here you can see the code for our search bar. It's a simple div that contains a form field with several elements, including a button and a text input field. Each of these is styled and nested within the parent container:
 
