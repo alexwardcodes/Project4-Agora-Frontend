@@ -6,7 +6,7 @@ This project was assigned in the final week of General Assembly’s 3-month SEI 
 
 ## Deployment link
 
-[You can find Agora deployed on this link](https://sei66project4agora.herokuapp.com/). Create an account to browse products or sign up as a seller to sell your own!
+[You can find Agora deployed on this link](https://agora-8009009f3244.herokuapp.com/). Create an account to browse products or sign up as a seller to sell your own!
 
 ![Screenshot 2022-11-09 at 12 09 57](https://media.git.generalassemb.ly/user/44781/files/4c3fd2df-9523-439f-8bc3-cfdbc0a98de0)
 
