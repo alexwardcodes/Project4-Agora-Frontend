@@ -5,7 +5,7 @@ import MyProductList from "./MyProductList";
 
 export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
-  const myProducts = props.seller && props.products ? props.products
+  const myProducts = props.seller ? props.products
     .filter((product) => {
         const { seller } = product;
         const [sellerInfo] = seller;
@@ -22,7 +22,7 @@ export default function MyProducts(props) {
           loadProductList={props.loadProductList}
         />
       );
-    }) : [];
+    }) : ([]);
 
   return (
     <div>
