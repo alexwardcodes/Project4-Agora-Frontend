@@ -1,6 +1,7 @@
 import Axios from "axios";
 import React, {useState} from "react";
 import ProfileEditForm from "./ProfileEditForm";
+import { BASE_URL } from "../App";
 
 import "./User.css";
 
@@ -16,7 +17,7 @@ export default function Profile(props) {
   }
  
   const editView = (id) => {
-    Axios.get(`/auth/update?id=${id}`)
+    Axios.get(`${BASE_URL}/auth/update?id=${id}`)
     .then( response => {
       let user = response.data.user;
       setIsEdit(true);
@@ -29,7 +30,7 @@ export default function Profile(props) {
   }
 
   const editUser = (user) => {
-    Axios.put("/auth/update", user)
+    Axios.put(`${BASE_URL}/auth/update`, user)
     .then( response => {
       console.log(response)
 

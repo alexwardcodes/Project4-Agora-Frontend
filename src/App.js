@@ -16,11 +16,14 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import image from './AGORA-LOGO.png'
+
 // Router
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 // Css
 import "./App.css";
 //icon
+
+export const BASE_URL = process.env.API_URL;
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -36,7 +39,7 @@ export default function App() {
       if (user) {
         setIsAuth(true);
 
-       Axios.get(`/user/dashboard?userId=${user?.id}`)
+       Axios.get(`${BASE_URL}/user/dashboard?userId=${user?.id}`)
           .then(({ data }) => {
             setUser(data.user);
             setName(data.user.firstName)
@@ -53,7 +56,7 @@ export default function App() {
   }, [isAuth]);
   
   const registerHandler = (user) => {
-    Axios.post("/auth/signup", user)
+    Axios.post(`${BASE_URL}/auth/signup`, user)
       .then((response) => {
         localStorage.setItem("userId", response.data.user._id);
 
@@ -72,7 +75,7 @@ export default function App() {
     window.location = "/";
   };
   const buyItem = (id, productId) => {
-    Axios.post(`/cart?userId=${id}&productId=${productId}`)
+    Axios.post(`${BASE_URL}/cart?userId=${id}&productId=${productId}`)
       .then((response) => {
         console.log(response);
       })
@@ -92,7 +95,7 @@ export default function App() {
   }, []);
 
   const loadProductList = () => {
-    Axios.get("/product/index")
+    Axios.get(`${BASE_URL}/product/index`)
       .then((response) => {
         setProducts(response.data.products);
       })
@@ -101,7 +104,7 @@ export default function App() {
       });
   };
   const loginHandler = (cred) => {
-    Axios.post("/auth/signin", cred)
+    Axios.post(`${BASE_URL}/auth/signin`, cred)
       .then((response) => {
         if (response.data.token != null) {
           localStorage.setItem("token", response.data.token);

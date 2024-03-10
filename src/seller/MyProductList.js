@@ -3,6 +3,7 @@ import Axios from "axios";
 import "../App.css";
 import { Link } from "react-router-dom";
 import ProductEditForm from "../product/ProductEditForm";
+import { BASE_URL } from "../App";
 
 export default function MyProductList(props) {
   const [currentProduct, setCurrentProduct] = useState({});
@@ -13,7 +14,7 @@ export default function MyProductList(props) {
   };
 
   const editView = (id) => {
-    Axios.get(`/product/edit?id=${id}`)
+    Axios.get(`${BASE_URL}/product/edit?id=${id}`)
       .then((response) => {
         let product = response.data.product;
 
@@ -26,7 +27,7 @@ export default function MyProductList(props) {
       });
   };
   const editProduct = (product) => {
-    Axios.put(`/product/update`, product)
+    Axios.put(`${BASE_URL}/product/update`, product)
       .then((response) => {
         console.log(response);
         props.loadProductList();
@@ -37,7 +38,7 @@ export default function MyProductList(props) {
   };
 
   const deleteProduct = (id) => {
-    Axios.delete(`/product/delete?id=${id}`)
+    Axios.delete(`${BASE_URL}/product/delete?id=${id}`)
       .then((response) => {
         console.log(response);
         props.loadProductList();
