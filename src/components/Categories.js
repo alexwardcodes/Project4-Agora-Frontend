@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
+import image from './electronics.png'
 
 function searchFunc(query, navigate, event) {
   event.preventDefault();
-  // if (!query) return;
   navigate(`/search?query=${query}`);
 }
 
 export default function Categories(props) {
-  const [search, setSearch] = useState("");
+  const [, setSearch] = useState("");
   const navigate = useNavigate();
 
   const categories = [
@@ -25,7 +25,7 @@ export default function Categories(props) {
     {
       categoryID: "electronics",
       categoryName: "Electronics",
-      src: "https://bigindiamarket.com/public/uploads/all/AUQiL4vmptIjLAtPgcyz73iobpRqEMUrXOg3jWMl.png",
+      src: image,
     },
     {
       categoryID: "office-supplies",

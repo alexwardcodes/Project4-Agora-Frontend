@@ -15,14 +15,9 @@ import SearchResults from "./SearchResults";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import image from './AGORA-LOGO.png'
 // Router
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 // Css
 import "./App.css";
 //icon
@@ -30,7 +25,9 @@ import "./App.css";
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser] = useState({});
-  const [message, setMessage] = useState(null);
+  const [name, setName] = useState('');
+  const [isSeller, setIsSeller] = useState(false);
+  const [, setMessage] = useState(null);
   const [counter, setCounter] = useState(0);
   useEffect(() => {
     let token = localStorage.getItem("token");
@@ -38,13 +35,23 @@ export default function App() {
       let { user } = jwt_decode(token);
       if (user) {
         setIsAuth(true);
-        setUser(user);
+
+       Axios.get(`/user/dashboard?userId=${user?.id}`)
+          .then(({ data }) => {
+            setUser(data.user);
+            setName(data.user.firstName)
+            return setIsSeller(data.seller);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else if (!user) {
         localStorage.removeItem("token");
         setIsAuth(false);
       }
     }
-  }, []);
+  }, [isAuth]);
+  
   const registerHandler = (user) => {
     Axios.post("/auth/signup", user)
       .then((response) => {
@@ -62,6 +69,7 @@ export default function App() {
     setIsAuth(false);
     setUser(null);
     setMessage("User logged out successfully");
+    window.location = "/";
   };
   const buyItem = (id, productId) => {
     Axios.post(`/cart?userId=${id}&productId=${productId}`)
@@ -107,8 +115,6 @@ export default function App() {
       });
   };
 
-  const [fileInputState, setFileInputState] = useState("");
-  const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState();
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
@@ -164,6 +170,7 @@ export default function App() {
       console.log(error);
     }
   };
+
   return (
     <Router>
       <Navbar expand="lg">
@@ -171,7 +178,7 @@ export default function App() {
           <Navbar.Brand>
             {" "}
             <Link to="/">
-              <img className="logo" alt="agora-logo" src="AGORA-LOGO.png"></img>
+              <img className="logo" alt="agora-logo" src={image}></img>
             </Link>{" "}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -184,7 +191,7 @@ export default function App() {
                 <div className="d-flex justify-end ">
                   {user ? (
                     <span className="user-name-nav me-5">
-                      Hey, {user.name}!
+                      Hey, {name}!
                     </span>
                   ) : null}
                   &nbsp;
@@ -210,7 +217,7 @@ export default function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <div>
+
         <Routes>
           {/* <Route path="/" element={<Home />}></Route> */}
           <Route
@@ -266,6 +273,7 @@ export default function App() {
                 previewProductFile={previewProductFile}
                 handleSubmitFileProduct={handleSubmitFileProduct}
                 loadProductList={loadProductList}
+                seller={isSeller}
               />
             }
           ></Route>
@@ -282,16 +290,30 @@ export default function App() {
           />
           <Route path="/logout" user={user} product={products}></Route>
         </Routes>
-      </div>
+
       <footer>
         <div className=" d-flex container">
           <div className="col-3">
             <img className="logo" alt="agora-logo" src="AGORA-LOGO.png"></img>
           </div>
           <div className="col-3">
-            <Link to="/addproduct"> Add a Product </Link>
-            <br></br>
-            <Link to="/user/dashboard"> User Dashboard </Link>
+            {isAuth ? (
+              <>
+                {" "}
+                <Link to="/user/dashboard"> User Dashboard </Link>
+              </>
+            ) : (
+              ""
+            )}
+<br />
+            {isAuth && isSeller ? (
+              <>
+                {" "}
+                <Link to="/addproduct"> Add a Product </Link>
+              </>
+            ) : (
+              ""
+            )}
           </div>
           <div className="col-3">
             <a href="/">Link 1</a>

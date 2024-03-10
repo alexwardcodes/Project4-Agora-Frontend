@@ -1,13 +1,13 @@
 import Axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import ProfileEditForm from "./ProfileEditForm";
 
 import "./User.css";
 
 export default function Profile(props) {
 
-  const [isEdit, setIsEdit] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [, setIsEdit] = useState(false);
+  const [, setCurrentUser] = useState({});
 
   const [showEditProfileForm, setShowEditProfileForm] = useState(false);
 
@@ -31,16 +31,13 @@ export default function Profile(props) {
   const editUser = (user) => {
     Axios.put("/auth/update", user)
     .then( response => {
-      console.log(user)
       console.log(response)
-      props.loadDashboard();
 
     })
     .catch(error => {
       console.log(error)
     })
   }
-
 
   return (
     <div>
@@ -93,11 +90,11 @@ export default function Profile(props) {
               </div>
             </div>
             <div className="col-md-3 col-sm-12">
-              <img
+              {props.user.cloudinary_url ? (<img
                 alt="profile"
                 className="profile-picture"
                 src={`${props.user.cloudinary_url}`}
-              ></img>
+              ></img>) : (<div className="profile-picture-not-found"><p>No photo</p></div>)}
             </div>
           </div>
         </div>

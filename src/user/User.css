@@ -21,6 +21,17 @@ p {
     margin-bottom: 40px;
     margin-top: 20px;
 }
+
+.profile-picture-not-found {
+    background-color: grey;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .user-name{
     margin-top: 50px;
     margin-bottom: 50px;

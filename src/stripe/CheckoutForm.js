@@ -21,9 +21,7 @@ export const CheckoutForm = (props) => {
     });
 
     if (!error) {
-      console.log("Stripe 23 | token generated!", paymentMethod);
       try {
-        console.log("user id is " + props.user.id);
         const { id } = paymentMethod;
         const response = await axios.post(
           `/stripe/charge?userId=${props.user.id}`,
@@ -33,8 +31,6 @@ export const CheckoutForm = (props) => {
             userId: props.user.id,
           }
         );
-        console.log("Stripe 35 | data", response.data);
-        console.log("Stripe 35 | data", response.data.success);
         if (response.data.success) {
           console.log("CheckoutForm.js 25 | payment successful!");
         }

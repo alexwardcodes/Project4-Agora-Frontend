@@ -1,21 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Axios from "axios";
-import Product from "../product/Product";
 import Profile from "../user/Profile";
 import MyProducts from "./MyProducts";
 
 export default function SellerAccount(props) {
-  const [products, setProducts] = useState([]);
-
-  const [isEdit, setIsEdit] = useState(false);
-  const [currentProduct, setCurrentProduct] = useState({});
-
-  console.log(props.user);
 
   const addProduct = (product, id) => {
     Axios.post(`/product/add?id=${id}`, product)
       .then((response) => {
-        console.log("Product added successfully from seller account");
         props.handleSubmitFileProduct(response.data.product._id);
         props.loadProductList();
       })
@@ -24,11 +16,7 @@ export default function SellerAccount(props) {
       });
   };
 
-  const allProducts = products.map((product, index) => (
-    <div key={index}>
-      <Product {...product} />
-    </div>
-  ));
+  console.log(props.seller)
 
   return (
     <div className="container">

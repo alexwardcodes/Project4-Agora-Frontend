@@ -2,18 +2,13 @@ import React from "react";
 import Categories from "../components/Categories";
 import Search from "../components/Search";
 import Review from "../seller/Review";
-import { useParams } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 
 export default function Product(props) {
-  const { productId } = useParams();
-  const thisProduct = props.product.find(
-    (product) => product._id === productId
-  );
+  const thisProduct = props.product[0];
   const [isOpen, setIsOpen] = React.useState(false);
   const [title, setTitle] = React.useState("Transitioning...");
-
   const showModal = () => {
     setIsOpen(true);
   };
@@ -37,22 +32,22 @@ export default function Product(props) {
       <Search></Search>
 
       <div className="row d-flex mt-6 product-details-div">
-        <p className="subcategories">{thisProduct.subCategory}</p>
+        <p className="subcategories">{thisProduct?.subCategory}</p>
         <div className="col-md-6">
           <img
-            src={`${thisProduct.cloudinary_url}`}
-            alt={`${thisProduct.cloudinary_url}`}
+            src={`${thisProduct?.cloudinary_url}`}
+            alt={`${thisProduct?.cloudinary_url}`}
             className="product-image-detail"
           />
         </div>
         <div className="col-md-6">
-          <h1>{thisProduct.title}</h1>
-          <h4> {thisProduct.subTitle} </h4> <br />
+          <h1>{thisProduct?.title}</h1>
+          <h4> {thisProduct?.subTitle} </h4> <br />
           <br />
           <p>
             Condition:{" "}
             <span>
-              <strong>{thisProduct.condition}</strong>
+              <strong>{thisProduct?.condition}</strong>
             </span>
           </p>
           <div className="row">
@@ -60,7 +55,7 @@ export default function Product(props) {
               <p>
                 Sold by:{" "}
                 <span>
-                  <strong>{thisProduct.seller[0].sellerName}</strong>
+                  <strong>{thisProduct?.seller[0].sellerName}</strong>
                 </span>
               </p>
             </div>
@@ -68,7 +63,7 @@ export default function Product(props) {
               <p>
                 Rating:{" "}
                 <span>
-                  <strong>{thisProduct.seller[0].sellerName}</strong>
+                  <strong>{thisProduct?.seller[0].sellerName}</strong>
                 </span>
               </p>
             </div>
@@ -78,15 +73,15 @@ export default function Product(props) {
             Shipping fee to the UK:{" "}
             <span>
               {" "}
-              <strong>£{thisProduct.shippingRate}</strong>{" "}
+              <strong>£{thisProduct?.shippingRate}</strong>{" "}
             </span>
           </p>{" "}
           <br />
           <h2>
-            <span>Price: </span>£{thisProduct.price}
+            <span>Price: </span>£{thisProduct?.price}
           </h2>{" "}
           <br />
-          {thisProduct.isSold === false ? (
+          {thisProduct?.isSold === false ? (
             <button
               className="buy-btn"
               onClick={() => {
@@ -123,9 +118,9 @@ export default function Product(props) {
       </div>
       <div className="mt-5 mb-5">
         <h2>Product Description</h2>
-        <p className="product-description">{thisProduct.description}</p> <br />
+        <p className="product-description">{thisProduct?.description}</p> <br />
         <h2>Returns Policy</h2>
-        <p>{thisProduct.returnsPolicy}</p>
+        <p>{thisProduct?.returnsPolicy}</p>
       </div>
       <Review></Review>
       <div>

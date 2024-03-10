@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 export default function ProfileEditForm(props) {
   const [newUser, setNewUser] = useState(props.user);
-    const [showEditProfileForm, setShowEditProfileForm] = useState(true);
   // Function
   const handleChange = (event) => {
     const attributeToChange = event.target.name;
@@ -11,7 +10,6 @@ export default function ProfileEditForm(props) {
     // Creating a copy of new user state
     const user = { ...newUser };
     user[attributeToChange] = newValue;
-    console.log(user);
     setNewUser(user);
   };
 

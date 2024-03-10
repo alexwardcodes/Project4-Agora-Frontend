@@ -5,16 +5,14 @@ import MyProductList from "./MyProductList";
 
 export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
-
   const myProducts = props.products
     .filter((product) => {
-      if (product.seller.length) {
         const { seller } = product;
         const [sellerInfo] = seller;
         const productSellerId = sellerInfo._id;
 
         return productSellerId === props.seller._id;
-      }
+      
     })
     .map((product) => {
       return (
@@ -26,20 +24,18 @@ export default function MyProducts(props) {
       );
     });
 
-  const handleShowAddProductForm = (boolean) => {
-    setShowAddProductForm(boolean);
-  };
-
   return (
     <div>
-      <button
+
+      {props.user.userRole === "seller" ? (<button
         className="index-price-button add-product"
         onClick={() => {
           setShowAddProductForm(true);
         }}
       >
         Add a Product!
-      </button>
+      </button>) : ('')}
+      
 
       {showAddProductForm ? (
         <div>
@@ -62,7 +58,7 @@ export default function MyProducts(props) {
           <h3>My Listings</h3>
           <br></br>
           <br></br>
-          {!!myProducts.length ? myProducts : <p>No listings yet!</p>}
+          {myProducts && !!myProducts.length > 0 ? myProducts : <p>No listings yet!</p>}
         </div>
       </div>
     </div>

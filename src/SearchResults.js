@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import Search from "./components/Search";
 
 export default function SearchResults() {
   const [searchResults, setSearchResults] = useState([]);
-  const [error, setError] = useState(false);
+  const [, setError] = useState(false);
   const location = useLocation();
   const query = new URLSearchParams(location.search).get("query");
-  const { slug } = useParams();
 
   const searchProduct = async () => {
     try {
