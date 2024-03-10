@@ -1,9 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 export default function CartItem(props) {
-  console.log(props.userId);
-  console.log(props.productId._id);
-  console.log(props.id);
 
   return (
     <>

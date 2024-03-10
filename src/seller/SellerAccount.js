@@ -7,7 +7,7 @@ import { BASE_URL } from "../App";
 export default function SellerAccount(props) {
 
   const addProduct = (product, id) => {
-    Axios.post(`/product/add?id=${id}`, product)
+    Axios.post(`${BASE_URL}/product/add?id=${id}`, product)
       .then((response) => {
         props.handleSubmitFileProduct(response.data.product._id);
         props.loadProductList();

@@ -53,7 +53,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://murmuring-plains-03152-806294ad09a1.herokuapp.com",
+
   "react-dotenv": {
     "whitelist": ["REACT_APP_STRIPE_PUBLIC_KEY", "API_URL"]
   }

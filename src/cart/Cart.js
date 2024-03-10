@@ -32,7 +32,7 @@ export default function Cart(props) {
   }, []);
 
   const loadCartList = (id) => {
-    Axios.get(`/cart?userId=${id}`)
+    Axios.get(`${BASE_URL}/cart?userId=${id}`)
       .then(({ data }) => {
         setCart(data.cart);
       })
@@ -42,7 +42,7 @@ export default function Cart(props) {
   };
 
   const shippingAndBilling = (data, id) => {
-    Axios.post(`/shipping_billing/update?userId=${id}`, data)
+    Axios.post(`${BASE_URL}/shipping_billing/update?userId=${id}`, data)
       .then((response) => {
         console.log("response is " + response.data);
       })
@@ -72,7 +72,7 @@ export default function Cart(props) {
   };
 
   const deleteItem = (id, productId) => {
-    Axios.delete(`/cart?userId=${id}&productId=${productId}`)
+    Axios.delete(`${BASE_URL}/cart?userId=${id}&productId=${productId}`)
       .then((response) => {
         console.log(response);
         loadCartList(id);
