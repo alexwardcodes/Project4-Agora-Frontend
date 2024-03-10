@@ -24,6 +24,8 @@ import "./App.css";
 //icon
 
 export const BASE_URL = process.env.API_URL;
+console.log(BASE_URL)
+console.log(process.env.API_URL)
 
 export default function App() {
   const [isAuth, setIsAuth] = useState(false);
@@ -39,7 +41,7 @@ export default function App() {
       if (user) {
         setIsAuth(true);
 
-       Axios.get(`${BASE_URL}/user/dashboard?userId=${user?.id}`)
+       Axios.get(`/user/dashboard?userId=${user?.id}`)
           .then(({ data }) => {
             setUser(data.user);
             setName(data.user.firstName)
@@ -56,7 +58,7 @@ export default function App() {
   }, [isAuth]);
   
   const registerHandler = (user) => {
-    Axios.post(`${BASE_URL}/auth/signup`, user)
+    Axios.post(`/auth/signup`, user)
       .then((response) => {
         localStorage.setItem("userId", response.data.user._id);
 
@@ -75,7 +77,7 @@ export default function App() {
     window.location = "/";
   };
   const buyItem = (id, productId) => {
-    Axios.post(`${BASE_URL}/cart?userId=${id}&productId=${productId}`)
+    Axios.post(`/cart?userId=${id}&productId=${productId}`)
       .then((response) => {
         console.log(response);
       })
@@ -95,7 +97,7 @@ export default function App() {
   }, []);
 
   const loadProductList = () => {
-    Axios.get(`${BASE_URL}/product/index`)
+    Axios.get(`/product/index`)
       .then((response) => {
         setProducts(response.data.products);
       })
@@ -104,7 +106,7 @@ export default function App() {
       });
   };
   const loginHandler = (cred) => {
-    Axios.post(`${BASE_URL}/auth/signin`, cred)
+    Axios.post(`/auth/signin`, cred)
       .then((response) => {
         if (response.data.token != null) {
           localStorage.setItem("token", response.data.token);

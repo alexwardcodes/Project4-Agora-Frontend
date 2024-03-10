@@ -17,7 +17,7 @@ export default function Profile(props) {
   }
  
   const editView = (id) => {
-    Axios.get(`${BASE_URL}/auth/update?id=${id}`)
+    Axios.get(`/auth/update?id=${id}`)
     .then( response => {
       let user = response.data.user;
       setIsEdit(true);
@@ -30,7 +30,7 @@ export default function Profile(props) {
   }
 
   const editUser = (user) => {
-    Axios.put(`${BASE_URL}/auth/update`, user)
+    Axios.put(`/auth/update`, user)
     .then( response => {
       console.log(response)
 
