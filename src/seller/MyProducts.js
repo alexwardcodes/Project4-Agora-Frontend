@@ -5,6 +5,7 @@ import MyProductList from "./MyProductList";
 
 export default function MyProducts(props) {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
+  console.log("MyProducts Props", props)
   const myProducts = props.products
     .filter((product) => {
         const { seller } = product;
