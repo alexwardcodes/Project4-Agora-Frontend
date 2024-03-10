@@ -10,7 +10,6 @@ export default function UserDashboard(props) {
         <BuyerAccount
           user={props.user}
           product={props}
- 
         />
       ) : (
         <SellerAccount
