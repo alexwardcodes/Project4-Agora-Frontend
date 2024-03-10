@@ -297,7 +297,7 @@ export default function App() {
       <footer>
         <div className=" d-flex container">
           <div className="col-3">
-            <img className="logo" alt="agora-logo" src="AGORA-LOGO.png"></img>
+            <img className="logo" alt="agora-logo" src={image}></img>
           </div>
           <div className="col-3">
             {isAuth ? (
